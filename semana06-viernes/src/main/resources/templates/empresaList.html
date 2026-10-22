@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Listado de Empresas</title>
+  <meta charset="utf8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+	
+	<div class="container mt-5">
+		<h1 class="mt-5">Empresas</h1>
+		<div class="row mb-3">
+			<div class="col-md-12">
+				<form action="/empresa/register" method="get">
+					<button type="submit" class="btn btn-primary">Registrar empresa</button>
+				</form>
+				<form action="/report/reportIndicador" method="get" class="float-right">
+					<button type="submit" class="btn btn-secondary">Generar reporte</button>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<h5>ID</h5>
+			</div>
+			<div class="col-md-6">
+				<h5>Nombre de empresa</h5>
+			</div>
+			<div class="col-md-4">
+				<h5>Acciones</h5>
+			</div>
+		</div>
+		<div class="list-group">
+			<div th:each="empresa : ${empresas}" class="list-group-item">
+				<div class="row">
+					<div class="col-md-2" th:text="${empresa.idEmpresa}"></div>
+					<div class="col-md-6" th:text="${empresa.categoria}"></div>
+					<div class="col-md-1">
+						<a th:href="@{'/empresa/edit/' + ${empresa.idEmpresa} }" class="btn btn-warning">Editar</a>
+					</div>
+					<div class="col-md-1">
+						<a th:href="@{'/empresa/delete/' + ${empresa.idEmpresa} }" 
+						 	onclick="return confirm('¿Está seguro de eliminar?');"	
+							class="btn btn-warning">Eliminar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
